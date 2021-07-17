@@ -8,6 +8,7 @@ class Quizzler extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.grey.shade900,
+        // appBar: AppBar(title: Text('Quizzler App'),),
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.0),
@@ -23,6 +24,10 @@ class QuizPage extends StatefulWidget {
   @override
   _QuizPageState createState() => _QuizPageState();
 }
+
+List<String> listOfQuestions = [];
+int trueScore = 0;
+int falseScore = 0;
 
 class _QuizPageState extends State<QuizPage> {
   @override
@@ -61,7 +66,10 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                //The user picked true.
+                setState(() {
+                  // When someone presses TRUE
+                  trueScore++;
+                });
               },
             ),
           ),
@@ -80,11 +88,20 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked false.
+                setState((){
+                  falseScore++;
+                });
               },
             ),
           ),
         ),
-        //TODO: Add a Row here as your score keeper
+        Row(// This is my score keeper
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Expanded(child: Row(children:[Icon(Icons.check,color: Colors.green),Text('${trueScore}', style: TextStyle(color: Colors.white),),],),),
+            Expanded(child: Row(mainAxisAlignment:MainAxisAlignment.end ,children:[Icon(Icons.close,color: Colors.red),Text('${falseScore}', style: TextStyle(color: Colors.white),),],),),
+          ],
+        ),
       ],
     );
   }
