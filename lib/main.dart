@@ -25,7 +25,34 @@ class QuizPage extends StatefulWidget {
   _QuizPageState createState() => _QuizPageState();
 }
 
-List<String> listOfQuestions = [];
+class QnA {
+  String question;
+  bool answer;
+  String explanation;
+  QnA(String question, bool answer, [String explanation]) {
+    this.question = question;
+    this.answer = answer;
+    if (explanation != null) {
+      this.explanation = explanation;
+    } else {
+      this.explanation = 'No explanation provided by system';
+    }
+  }
+}
+
+List<QnA> qnaList = [
+  new QnA('The zodiac sign of Aquarius is represented by a tiger', false, 'The zodiac sign for Aquarious is a Water bearer'),
+  new QnA('The unicorn is the national animal of Scotland', true),
+  new QnA('"A" is the most common letter used in the English language', false, 'E is the most common letter'),
+  new QnA('Monaco is the smallest country in the world', false, 'Its the Vatican'),
+  new QnA('There are five different blood groups', false, 'There are four: A, B, AB, and O'),
+  new QnA('Alaska is the biggest American state in square kilometers', true),
+  new QnA('Utar Padesh is the largest state of India in square kilometers', false, 'Rajasthan is the largest state by area in India'),
+  new QnA('Alexander Fleming discovered penicillin', true),
+  new QnA('Jonas Edward Salk is credited with the firxt effective vaccine against Polio', true),
+  new QnA('Your ' 'radius' ' bone is in your leg', false, 'Radius is one of the biggest bones in your forearm')
+];
+
 int trueScore = 0;
 int falseScore = 0;
 
@@ -88,18 +115,40 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked false.
-                setState((){
+                setState(() {
                   falseScore++;
                 });
               },
             ),
           ),
         ),
-        Row(// This is my score keeper
+        Row(
+          // This is my score keeper
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Expanded(child: Row(children:[Icon(Icons.check,color: Colors.green),Text('${trueScore}', style: TextStyle(color: Colors.white),),],),),
-            Expanded(child: Row(mainAxisAlignment:MainAxisAlignment.end ,children:[Icon(Icons.close,color: Colors.red),Text('${falseScore}', style: TextStyle(color: Colors.white),),],),),
+            Expanded(
+              child: Row(
+                children: [
+                  Icon(Icons.check, color: Colors.green),
+                  Text(
+                    '${trueScore}',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Icon(Icons.close, color: Colors.red),
+                  Text(
+                    '${falseScore}',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ],
