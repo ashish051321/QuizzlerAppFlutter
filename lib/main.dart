@@ -75,7 +75,7 @@ class _QuizPageState extends State<QuizPage> {
       quizOver = true;
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => QuizOverPage(trueScore)),
+        MaterialPageRoute(builder: (context) => QuizOverPage(trueScore, qnaList.length)),
       );
     }
   }
