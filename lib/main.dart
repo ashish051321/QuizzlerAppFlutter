@@ -36,7 +36,7 @@ class QuizOverPage extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 10.0),
           child: Center(
             child: Text(
-              'Congratulations, you have completed the quiz. You have scored ${trueScore * 100 / qnaList.length}. We have mailed you the results :)',
+              'Congratulations, you have completed the quiz. You have scored ${trueScore * 100 / qnaList.length} percent. We have mailed you the results :)',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 25.0,
