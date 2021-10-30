@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(Quizzler());
 
-class Quizzler extends StatelessWidget {
+class Quizzler extends StatefulWidget {
+  @override
+  _QuizPageState createState() => _QuizPageState();
+}
+
+class _QuizzlerState extends State<Quizzler> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -58,9 +63,12 @@ class _QuizPageState extends State<QuizPage> {
   int falseScore = 0;
   int questionIndex = 0;
   int quizSize = qnaList.length;
-
+  bool quizOver = false;
   void nextQuestion() {
-    this.questionIndex = (this.questionIndex + 1) % this.quizSize;
+    this.questionIndex = (this.questionIndex + 1);
+    if (this.questionIndex == quizSize) {
+      this.quizOver = true;
+    }
   }
 
   void checkQuestion(bool answer) {
