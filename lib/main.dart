@@ -91,9 +91,11 @@ class _QuizPageState extends State<QuizPage> {
   int falseScore = 0;
   int questionIndex = 0;
   int quizSize = qnaList.length;
+
   void nextQuestion() {
     this.questionIndex = (this.questionIndex + 1);
     if (this.questionIndex == quizSize) {
+      this.questionIndex--;
       quizOver = true;
     }
   }
