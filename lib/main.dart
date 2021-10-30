@@ -86,7 +86,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                '${qnaList[this.questionIndex]}',
+                '${qnaList[this.questionIndex].question}',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
