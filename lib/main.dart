@@ -36,7 +36,7 @@ class QuizOverPage extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 10.0),
           child: Center(
             child: Text(
-              'Congratulations, you have completed the quiz. We have mailed you the results :)',
+              'Congratulations, you have completed the quiz. You have scored ${trueScore * 100 / qnaList.length}. We have mailed you the results :)',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 25.0,
@@ -84,10 +84,10 @@ List<QnA> qnaList = [
   new QnA('Jonas Edward Salk is credited with the firxt effective vaccine against Polio', true),
   new QnA('Your ' 'radius' ' bone is in your leg', false, 'Radius is one of the biggest bones in your forearm')
 ];
+int trueScore = 0;
+int falseScore = 0;
 
 class _QuizPageState extends State<QuizPage> {
-  int trueScore = 0;
-  int falseScore = 0;
   int questionIndex = 0;
   int quizSize = qnaList.length;
 
@@ -104,7 +104,7 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   void checkQuestion(bool answer) {
-    (qnaList[questionIndex].answer == answer) ? this.trueScore++ : this.falseScore++;
+    (qnaList[questionIndex].answer == answer) ? trueScore++ : falseScore++;
   }
 
   void previousQuestion() {
