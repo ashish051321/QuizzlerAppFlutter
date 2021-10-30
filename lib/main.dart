@@ -53,10 +53,27 @@ List<QnA> qnaList = [
   new QnA('Your ' 'radius' ' bone is in your leg', false, 'Radius is one of the biggest bones in your forearm')
 ];
 
-int trueScore = 0;
-int falseScore = 0;
-
 class _QuizPageState extends State<QuizPage> {
+  int trueScore = 0;
+  int falseScore = 0;
+  int questionIndex = 0;
+  int quizSize = qnaList.length;
+
+  void nextQuestion() {
+    this.questionIndex = (this.questionIndex + 1) % this.quizSize;
+  }
+
+  void checkQuestion(bool answer) {
+    (qnaList[questionIndex].answer == answer) ? this.trueScore++ : this.falseScore++;
+  }
+
+  void previousQuestion() {
+    this.questionIndex--;
+    if (this.questionIndex == -1) {
+      this.questionIndex = this.quizSize;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -69,7 +86,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                'This is where the question text will go.',
+                '${qnaList[this.questionIndex]}',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -95,7 +112,8 @@ class _QuizPageState extends State<QuizPage> {
               onPressed: () {
                 setState(() {
                   // When someone presses TRUE
-                  trueScore++;
+                  this.checkQuestion(true);
+                  this.nextQuestion();
                 });
               },
             ),
@@ -116,7 +134,8 @@ class _QuizPageState extends State<QuizPage> {
               onPressed: () {
                 //The user picked false.
                 setState(() {
-                  falseScore++;
+                  this.checkQuestion(false);
+                  this.nextQuestion();
                 });
               },
             ),
