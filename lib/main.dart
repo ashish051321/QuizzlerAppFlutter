@@ -17,7 +17,7 @@ class _QuizzlerState extends State<Quizzler> {
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.0),
-            child: quizOver ? QuizOverPage(): QuizPage(),
+            child: quizOver ? QuizOverPage() : QuizPage(),
           ),
         ),
       ),
@@ -25,32 +25,32 @@ class _QuizzlerState extends State<Quizzler> {
   }
 }
 
-class QuizOverPage extends StatelessWidget{
+class QuizOverPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return MaterialApp(
-      home: Scaffold(
-        backgroundColor: Colors.grey.shade900,
-        body: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.0),
-            child:Center(
-              child: Text(
-                'Congratulations, you have completed the quiz. We have mailed you the results :)',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 25.0,
-                  color: Colors.white,
-                ),
+        home: Scaffold(
+      backgroundColor: Colors.grey.shade900,
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10.0),
+          child: Center(
+            child: Text(
+              'Congratulations, you have completed the quiz. We have mailed you the results :)',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 25.0,
+                color: Colors.white,
+              ),
             ),
           ),
         ),
       ),
-    );
+    ));
   }
-
 }
+
 class QuizPage extends StatefulWidget {
   @override
   _QuizPageState createState() => _QuizPageState();
