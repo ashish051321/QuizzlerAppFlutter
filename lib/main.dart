@@ -4,7 +4,7 @@ void main() => runApp(Quizzler());
 
 class Quizzler extends StatefulWidget {
   @override
-  _QuizPageState createState() => _QuizPageState();
+  _QuizzlerState createState() => _QuizzlerState();
 }
 
 class _QuizzlerState extends State<Quizzler> {
