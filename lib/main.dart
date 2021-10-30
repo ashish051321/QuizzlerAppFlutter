@@ -17,7 +17,7 @@ class _QuizzlerState extends State<Quizzler> {
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.0),
-            child: QuizPage(),
+            child: quizOver ? QuizOverPage(): QuizPage(),
           ),
         ),
       ),
@@ -25,6 +25,32 @@ class _QuizzlerState extends State<Quizzler> {
   }
 }
 
+class QuizOverPage extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return MaterialApp(
+      home: Scaffold(
+        backgroundColor: Colors.grey.shade900,
+        body: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10.0),
+            child:Center(
+              child: Text(
+                'Congratulations, you have completed the quiz. We have mailed you the results :)',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 25.0,
+                  color: Colors.white,
+                ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+}
 class QuizPage extends StatefulWidget {
   @override
   _QuizPageState createState() => _QuizPageState();
@@ -45,6 +71,8 @@ class QnA {
   }
 }
 
+bool quizOver = false;
+
 List<QnA> qnaList = [
   new QnA('The zodiac sign of Aquarius is represented by a tiger', false, 'The zodiac sign for Aquarious is a Water bearer'),
   new QnA('The unicorn is the national animal of Scotland', true),
@@ -63,11 +91,10 @@ class _QuizPageState extends State<QuizPage> {
   int falseScore = 0;
   int questionIndex = 0;
   int quizSize = qnaList.length;
-  bool quizOver = false;
   void nextQuestion() {
     this.questionIndex = (this.questionIndex + 1);
     if (this.questionIndex == quizSize) {
-      this.quizOver = true;
+      quizOver = true;
     }
   }
 
