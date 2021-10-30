@@ -17,7 +17,7 @@ class _QuizzlerState extends State<Quizzler> {
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.0),
-            child: quizOver ? QuizOverPage() : QuizPage(),
+            child: QuizPage(),
           ),
         ),
       ),
@@ -28,7 +28,6 @@ class _QuizzlerState extends State<Quizzler> {
 class QuizOverPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return MaterialApp(
         home: Scaffold(
       backgroundColor: Colors.grey.shade900,
@@ -97,6 +96,10 @@ class _QuizPageState extends State<QuizPage> {
     if (this.questionIndex == quizSize) {
       this.questionIndex--;
       quizOver = true;
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => QuizOverPage()),
+      );
     }
   }
 
